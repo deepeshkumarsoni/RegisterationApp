@@ -4,11 +4,11 @@
 <form>
   <div class="form-group">
     <label for="fullName"> Full Name : </label>
-    <input id="fullName" type="text" class="form-control" placeholder="Enter here"/>
+    <input [(ngModel)] name="fullName" #fullName="ngModel" (change)="log(fullName)" id="fullName" type="text" class="form-control" placeholder="Enter here"/>
   </div><br>
   <div class="form-group">
     <label for="emailId"> Email-ID :</label>
-    <input id="emailId" type="text" class="form-control"/>
+    <input id="emailId" type="text" class="form-control" placeholder="Enter here"/>
   </div> <br>
   <button id="btn" class="btn btn-primary"> SUBMIT </button>
 </form>
