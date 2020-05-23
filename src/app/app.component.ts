@@ -1,5 +1,19 @@
 import { Component } from '@angular/core';
 
+export interface User{
+  firstName : string;
+  lastName : string;
+  age : number;
+  gender : string;
+  email : string;
+  password : string;
+  country :string;
+  state : string;
+  city : string;
+  dob : number;  
+  academic : string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,13 +21,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'RegisterationApp';
-  fullName = '';
-  lastName = '';
-  age = '';
-  email = '';
-  password = '';
-  dob = '';
-  tob = '';
-  report = '';
+  user : User;
+  userList : User[];
+  
+  constructor(){
+     
+  }
+
+  register(){
+
+  }
 
 }

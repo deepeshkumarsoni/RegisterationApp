@@ -3,43 +3,43 @@
 
 <form>
   <div class="form-group">
-    <label> Full Name : </label>
-    <input placeholder="Enter here" [(ngModel)] = "fullName"/>
+    <label> First Name : </label>
+    <input placeholder="Enter here" [(ngModel)] = "user.firstName/>
     <label> Last Name : </label>
-    <input placeholder="Enter here" [(ngModel)] = "lastName"/>
+    <input placeholder="Enter here" [(ngModel)] = "user.lastName"/>
   </div><br>
   
   <div class="form-group">
     <label > Age :</label>
-    <input placeholder="Enter here" [(ngModel)] = "age"/>
+    <input placeholder="Enter here" [(ngModel)] = "user.age"/>
   </div> <br>
 
   <div class="form-group">
     <label> Gender :</label>
-    <input type ="radio" value="male">Male
-    <input type ="radio" value="female">Female
+    <input type ="radio" value="male" [(ngModel)] = "user.gender"/>Male
+    <input type ="radio" value="female" [(ngModel)] = "user.gender"/>Female
   </div> <br>
 
   <div class="form-group">
     <label> Email-ID :</label>
-    <input type="email" placeholder="Enter here" [(ngModel)] = "email"/>
+    <input type="email" placeholder="Enter here" [(ngModel)] = "user.email"/>
   </div> <br>
 
   <div class="form-group">
     <label > Password :</label>
-    <input type="password" placeholder="Enter here" [(ngModel)] = "password"/>
+    <input type="password" placeholder="Enter here" [(ngModel)] = "user.password"/>
   </div> <br>
 
   <div class="form-group">
     <label > Date Of Birth :</label>
-    <input type="datetime-local" [(ngModel)] = "dob"/>
+    <input type="datetime-local" [(ngModel)] = "user.dob"/>
   </div> <br>
 
   <div class="form-group">
     <label > Academic Report :</label>
-    <input type="checkbox" value="10" [(ngModel)] = "report"/> 10th
-    <input type="checkbox" value="12" [(ngModel)] = "report"/> 12th
-    <input type="checkbox" value="graduate" [(ngModel)] = "report"/> Graduation
+    <input type="checkbox" value="10" [(ngModel)] = "user.academic"/> 10th
+    <input type="checkbox" value="12" [(ngModel)] = "user.academic"/> 12th
+    <input type="checkbox" value="graduate" [(ngModel)] = "user.academic/> Graduation
   </div> <br>
   
   <div class="form-group">    
@@ -66,6 +66,24 @@
     </select>  
   </div> <br>
 
-  <button > SUBMIT </button>
+  <button (click)="register()"> Register </button>
 </form>
+
+<table border="2px" style="border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th> First Name </th>  
+      <th> Last Name </th>    
+      <th> Age </th>  
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> {{firstName}} </td>
+      <td> {{lastName}} </td>
+      <td> {{age}} </td>
+    </tr>
+  </tbody>
+</table>
+
 </body>
