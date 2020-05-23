@@ -38,6 +38,7 @@ export class AppComponent {
         dob : 0,
         academic : '',
       };
+      this.userList = [];
   }
 
   register(){
