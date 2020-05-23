@@ -13,6 +13,7 @@ export class AppComponent {
   email = '';
   password = '';
   dob = '';
+  tob = '';
   report = '';
 
 }
