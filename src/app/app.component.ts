@@ -7,5 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'RegisterationApp';
-  log(x) {console.log(x);}
+  fullName = '';
+  lastName = '';
+  age = '';
+  email = '';
+  password = '';
+  dob = '';
+  report = '';
+
 }
