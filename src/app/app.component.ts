@@ -25,7 +25,19 @@ export class AppComponent {
   userList : User[];
   
   constructor(){
-     
+     this.user = {
+        firstName:'',
+        lastName:'',
+        age : 0,
+        gender : '',
+        email : '',
+        password : '',
+        country : '',
+        state : '',
+        city : '',
+        dob : 0,
+        academic : '',
+      };
   }
 
   register(){
