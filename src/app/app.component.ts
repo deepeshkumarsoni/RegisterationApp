@@ -21,6 +21,23 @@ export interface Academy {
   id: string;
   selected: boolean;
 }
+export interface Country{
+  name : string;
+  id : string;
+  //selected : boolean;
+}
+
+export interface State{
+  name : string;
+  id : string;
+  //selected : boolean;
+}
+
+export interface City{
+  name : string;
+  id : string;
+  //selected : boolean;
+}
 
 @Component({
   selector: 'app-root',
@@ -33,6 +50,12 @@ export class AppComponent {
   user : User;
   userList : User[];
   academyList : Academy[] = [];
+  country : Country;
+  countryList : Country[] = [];
+  state : State;
+  stateList : State[] = [];
+  city : City;
+  cityList : City[] = [];
 
   constructor(){
      this.user = {
@@ -42,14 +65,14 @@ export class AppComponent {
         gender : 'M',
         email : 'deepesh@gmail.com',
         password : 'abcd',
-        country : 'India',
+        country : 'RUSSIA',
         state : 'CG',
         city : 'Bhilai',
         dateOfBirth : new Date('14/3/1991') ,
         timeOfBirth : '2 PM',
         academyList : ['1','2'],
       };
-    
+
       this.academyList.push(
         {       
           name : "10th",
@@ -67,11 +90,77 @@ export class AppComponent {
           selected : true,
         }
       );  
-        this.userList = [];
-  }
-   
+    
+      this.countryList.push(
+        {       
+          name : "India",
+          id : '1',
+          //selected : false,
+        },
+        {
+          name : "USA",
+          id : '2',
+          //selected : false,
+        },
+        { 
+          name : "CANADA",
+          id : '3',
+          //selected : true,
+        }
+      );  
+      
+      this.stateList.push(
+        {       
+          name : "PUNE",
+          id : '1',
+          //selected : false,
+        },
+        {
+          name : "HYD",
+          id : '2',
+          //selected : false,
+        },
+        { 
+          name : "DELHI",
+          id : '3',
+          //selected : true,
+        }
+      );  
+
+      this.cityList.push(
+        {       
+          name : "VADGAON",
+          id : '1',
+          //selected : false,
+        },
+        {
+          name : "KPHBC",
+          id : '2',
+          //selected : false,
+        },
+        { 
+          name : "TORRENTO",
+          id : '3',
+          //selected : true,
+        }
+      );  
+
+      this.userList = [];
+  }   
     isSelected(academyId: string) {
       return this.user.academyList.indexOf(academyId) > -1;
+    }
+
+    isCountrySelect(countryId : string){
+      return this.user.country.indexOf(countryId) > -1;
+    }
+
+    isStateSelect(stateId : string){
+      return this.user.state.indexOf(stateId) > -1;
+    }
+  
+    isCitySelect(cityId : string){
+      return this.user.city.indexOf(cityId) > -1;
     }
   
 } 
