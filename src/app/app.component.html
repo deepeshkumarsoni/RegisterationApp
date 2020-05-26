@@ -1,17 +1,15 @@
-<body>
-<h1> My Registeration App </h1>
+<h1> REGISTERATION APP </h1>
 
-<form>
   <div class="form-group">
     <label> First Name : </label>
-    <input placeholder="Enter here" [(ngModel)] = "user.firstName"/>
+    <input type="text" placeholder="Enter here" [(ngModel)] = "user.firstName"/>
     <label> Last Name : </label>
-    <input placeholder="Enter here" [(ngModel)] = "user.lastName"/>
+    <input type="text" placeholder="Enter here" [(ngModel)] = "user.lastName"/>
   </div><br>
   
   <div class="form-group">
     <label > Age :</label>
-    <input placeholder="Enter here" [(ngModel)] = "user.age"/>
+    <input type="number" placeholder="Enter here" [(ngModel)] = "user.age"/>
   </div> <br>
 
   <div class="form-group">
@@ -32,32 +30,34 @@
 
   <div class="form-group">
     <label > Date Of Birth :</label>
-    <input type="datetime-local" [(ngModel)] = "user.dob"/>
+    <input type="date" [(ngModel)] = "user.dateOfBirth"/>
+    <label > Time Of Birth :</label>
+    <input type="time" [(ngModel)] = "user.timeOfBirth"/>
   </div> <br>
 
   <div class="form-group">
     <label > Academic Report :</label>
-    <input type="checkbox" value="10" [(ngModel)] = "user.academic"> 10th
-    <input type="checkbox" value="12" [(ngModel)] = "user.academic"> 12th
-    <input type="checkbox" value="graduate" [(ngModel)] = "user.academic"> Graduation
+    <span *ngFor = "let academy from academyList">
+      <input type="checkbox" [value] = "academy.id"> {{academy.name}}
+    </span>
   </div> <br>
   
   <div class="form-group">    
-    Country :
+    <label> Country : </label> 
     <select> 
       <option></option>
       <option value="india"> India </option>
       <option value="usa"> USA  </option>
       <option value="canada"> Canada </option> 
     </select> 
-    State :
+    <label> State : </label>
     <select> 
       <option></option>
       <option value="hyd"> Hyderabad </option>
       <option value="pune"> Pune  </option>
       <option value="delhi"> Delhi </option> 
     </select>
-    City :
+    <label> City : </label>
     <select>
       <option></option> 
       <option value="kphb"> KPHB </option>
@@ -66,8 +66,8 @@
     </select>  
   </div> <br>
 
-  <button (click)="register()"> Register </button>
-</form>
+  <button> Register </button>
+<br>
 
 <table border="2px" style="border-collapse: collapse;">
   <thead>
@@ -86,4 +86,8 @@
   </tbody>
 </table>
 
-</body>
+<pre>
+  {{user|json}}
+</pre>
+
+
