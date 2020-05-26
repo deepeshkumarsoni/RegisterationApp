@@ -38,7 +38,7 @@
   <div class="form-group">
     <label > Academic Report :</label>
     <span *ngFor = "let academy from academyList">
-      <input type="checkbox" [value] = "academy.id"> {{academy.name}}
+      <input type="checkbox" [checked] = "isSelected(academy.id)" > {{academy.name}}
     </span>
   </div> <br>
   
@@ -64,10 +64,10 @@
       <option value="vadgaon"> Vadgaon  </option>
       <option value="noida"> Noida </option> 
     </select>  
-  </div> <br>
+  </div> 
 
   <button> Register </button>
-<br>
+
 
 <table border="2px" style="border-collapse: collapse;">
   <thead>

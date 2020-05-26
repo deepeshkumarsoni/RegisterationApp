@@ -47,7 +47,7 @@ export class AppComponent {
         city : 'Bhilai',
         dateOfBirth : new Date('14/3/1991') ,
         timeOfBirth : '2 PM',
-        academyList : ['1','2']
+        academyList : ['1','2'],
       };
     
       this.academyList.push(
@@ -70,8 +70,8 @@ export class AppComponent {
         this.userList = [];
   }
    
-    isSelected(id: string) {
-      return this.user.academyList.indexOf(id) > -1;
+    isSelected(academyId: string) {
+      return this.user.academyList.indexOf(academyId) > -1;
     }
   
 } 
