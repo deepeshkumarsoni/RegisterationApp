@@ -5,7 +5,7 @@
     <input type="text" placeholder="Enter here" [(ngModel)] = "user.firstName"/>
     <label> Last Name : </label>
     <input type="text" placeholder="Enter here" [(ngModel)] = "user.lastName"/>
-  </div><br>
+  </div> <br>
   
   <div class="form-group">
     <label > Age :</label>
@@ -14,8 +14,9 @@
 
   <div class="form-group">
     <label> Gender :</label>
-    <input type ="radio" value="male" [(ngModel)] = "user.gender"/>Male
-    <input type ="radio" value="female" [(ngModel)] = "user.gender"/>Female
+    <span *ngFor = 'let gender of genderList'>
+      <input type ="radio" [checked] = "isGenderSelected(gender.id)"/>{{gender.name}}    
+    </span>
   </div> <br>
 
   <div class="form-group">
@@ -37,12 +38,12 @@
 
   <div class="form-group">
     <label > Academic Report :</label>
-    <span *ngFor = "let academy from academyList">
+    <span *ngFor = "let academy of academyList">
       <input type="checkbox" [checked] = "isSelected(academy.id)" > {{academy.name}}
     </span>
   </div> <br>
   
-  <div class="form-group">    
+  <!-- <div class="form-group">    
     <label> Country : </label> 
     <select *ngFor = "let country form countryList"> 
         <option [value] = "isCountrySelect(country.id)"> {{country.name}} </option>
@@ -57,7 +58,7 @@
       <option [value] = "isCitySelect(city.id)"> {{city.name}} </option>
     </select> 
 
-  </div> 
+  </div>  -->
 
   <button> Register </button>
 
