@@ -51,28 +51,29 @@ export class AppComponent {
   userList : User[];
   academyList : Academy[] = [];
   country : Country;
-  countryList : Country[] = [];
+  countryList : Country[];
   state : State;
-  stateList : State[] = [];
+  stateList : State[];
   city : City;
-  cityList : City[] = [];
+  cityList : City[];
 
   constructor(){
      this.user = {
         firstName:'Deepesh',
         lastName:'Soni',
         age : 28,
-        gender : 'M',
+        gender : 'Male',
         email : 'deepesh@gmail.com',
         password : 'abcd',
-        country : 'RUSSIA',
-        state : 'CG',
-        city : 'Bhilai',
+        country : "INDIA",
+        state : 'PUNE',
+        city : 'VADGAON',
         dateOfBirth : new Date('14/3/1991') ,
         timeOfBirth : '2 PM',
         academyList : ['1','2'],
       };
-
+      this.userList = [];
+      
       this.academyList.push(
         {       
           name : "10th",
@@ -145,7 +146,7 @@ export class AppComponent {
         }
       );  
 
-      this.userList = [];
+      
   }   
     isSelected(academyId: string) {
       return this.user.academyList.indexOf(academyId) > -1;
