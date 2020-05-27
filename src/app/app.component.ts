@@ -67,7 +67,7 @@ export class AppComponent {
         firstName:'Deepesh',
         lastName:'Soni',
         age : 28,
-        gender : '2',
+        gender : '1',
         email : 'deepesh@gmail.com',
         password : 'abcd',
         countryList : ["INDIA"],
@@ -169,13 +169,10 @@ export class AppComponent {
                     
   } 
     isGenderSelected(genderId: string) {
-    let check = false;
-    this.genderList.forEach((element) => {
-      if(element.id === genderId){
-        check = true;
+      if(this.user.gender === genderId){
+        return true;
       }        
-    });    
-    return check 
+     
   }
 
     isSelected(academyId: string) {

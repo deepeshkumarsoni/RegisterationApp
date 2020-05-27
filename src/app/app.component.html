@@ -14,7 +14,7 @@
 
   <div class="form-group">
     <label> Gender :</label>
-    <span *ngFor = 'let gender of genderList'>
+    <span *ngFor = "let gender of genderList">
       <input type ="radio" [checked] = "isGenderSelected(gender.id)"/>{{gender.name}}    
     </span>
   </div> <br>
