@@ -67,7 +67,7 @@ export class AppComponent {
         firstName:'Deepesh',
         lastName:'Soni',
         age : 28,
-        gender : '1',
+        gender : '2',
         email : 'deepesh@gmail.com',
         password : 'abcd',
         countryList : ["INDIA"],
@@ -173,8 +173,6 @@ export class AppComponent {
     this.genderList.forEach((element) => {
       if(element.id === genderId){
         check = true;
-      }else{
-        check = false;
       }        
     });    
     return check 
