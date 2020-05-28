@@ -48,19 +48,19 @@
     <label> Country : </label> 
     <select> 
       <option>--Select--</option> 
-      <option *ngFor = "let country of countryList" [selected]= "isCountrySelected(country.id)" > {{country.name}} </option>
+      <option *ngFor = "let country of countryList" [selected]= "isCountrySelected(country.countryId)" > {{country.name}} </option>
     </select>
     
     <label> State : </label>
     <select> 
       <option>--Select--</option> 
-      <option *ngFor = "let state of stateList" [selected]= "isStateSelected(state.id)" > {{state.name}} </option>
+      <option *ngFor = "let state of stateList" [selected]= "isStateSelected(state.stateId)" > {{state.name}} </option>
     </select> 
 
     <label> City : </label> 
     <select> 
       <option>--Select--</option> 
-      <option *ngFor = "let city of cityList" [selected]= "isCitySelected(city.id)" > {{city.name}} </option>
+      <option *ngFor = "let city of cityList" [selected]= "isCitySelected(city.cityId)" > {{city.name}} </option>
     </select>
     
   </div>

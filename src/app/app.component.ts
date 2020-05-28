@@ -24,24 +24,22 @@ export interface Gender{
 export interface Academy {
   name: string;
   id: string;
-  selected: boolean;
 }
 export interface Country{
   name : string;
-  id : string;  
-  selected : boolean;
+  countryId : string;  
 }
 
 export interface State{
   name : string;
-  id : string;
-  selected : boolean;
+  stateId : string;
+  countryId : string;
 }
 
 export interface City{
   name : string;
-  id : string;
-  selected : boolean;
+  cityId : string; 
+  stateId : string; 
 }
 
 @Component({
@@ -69,8 +67,8 @@ export class AppComponent {
         email : 'deepesh@gmail.com',
         password : 'abcd',
         country : '1',
-        state : '2',
-        city : '2',
+        state : '3',
+        city : '6',
         dateOfBirth : new Date('14/3/1991') ,
         timeOfBirth : '2 PM',
         academyList : ['1','3']
@@ -91,44 +89,77 @@ export class AppComponent {
       this.countryList.push(
         {
           name : 'INDIA',
-          id : '1',
-          selected : true,          
+          countryId : '1',                    
         },
         {
           name : 'USA',
-          id : '2',
-          selected : false,
+          countryId : '2',
         }        
       );
 
       this.stateList.push(
         {
           name : 'Maharastra',
-          id : '1',   
-          selected : false,       
+          stateId : '1',  
+          countryId : '1',        
         },
         {
           name : 'Chattisgarh',
-          id : '2',    
-          selected : false,  
+          stateId : '2',  
+          countryId : '1',    
+        },
+        {
+          name : 'New York',
+          stateId : '3',  
+          countryId : '2',        
+        },
+        {
+          name : 'Manhatten',
+          stateId : '4',  
+          countryId : '2',    
         }        
       );
 
       this.cityList.push(
         {
-          name : 'Bhilai',
-          id : '1',   
-          selected : false,       
+          name : 'Nagpur',
+          cityId : '1', 
+          stateId : '1'         
         },
         {
           name : 'Pune',
-          id : '2',    
-          selected : false,  
+          cityId : '2', 
+          stateId : '1'         
         },
         {
-          name : 'Nagpur',
-          id : '3',   
-          selected : false,       
+          name : 'Bhilai',
+          cityId : '3',  
+          stateId : '2',   
+        },
+        {
+          name : 'Durg',
+          cityId : '4',  
+          stateId : '2',        
+        },
+        {
+          name : 'Kalahandi',
+          cityId : '5', 
+          stateId : '3'         
+        },
+        {
+          name : 'Shaitaan Galli',
+          cityId : '6', 
+          stateId : '3'         
+        },
+        {
+          name : 'Ram Nagar',
+          cityId : '7',  
+          stateId : '4',   
+        },
+        {
+          name : 'Khursipar',
+          cityId : '8',  
+          stateId : '4',        
         }               
       );
 
@@ -136,22 +167,18 @@ export class AppComponent {
         {       
           name : "10th",
           id : '1',
-          selected : false,
         },
         {
           name : "12th",
           id : '2',
-          selected : false,
         },        
         { 
           name : "Graduate",
           id : '3',
-          selected : false,
         },
         { 
           name : "Post-Graduate",
           id : '4',
-          selected : false,
         }
       );  
     
@@ -168,7 +195,7 @@ export class AppComponent {
     isSelected(academyId: string) {
       return this.user.academyList.indexOf(academyId) > -1;
     }
-    
+
     isCountrySelected(countryId : string){
       if(this.user.country === countryId){
         return true
