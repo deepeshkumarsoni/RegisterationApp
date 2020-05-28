@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Time } from '@angular/common';
+import { getLocaleDateTimeFormat } from '@angular/common';
 
 export interface User{
   firstName : string;
@@ -8,9 +9,9 @@ export interface User{
   gender : string;
   email : string;
   password : string;
-  countryList :string[];
-  stateList : string[];
-  cityList : string[];
+  country :string;
+  state : string;
+  city : string;
   dateOfBirth : Date;  
   timeOfBirth : string; 
   academyList : string[];
@@ -27,7 +28,7 @@ export interface Academy {
 }
 export interface Country{
   name : string;
-  id : string;
+  id : string;  
   selected : boolean;
 }
 
@@ -55,11 +56,8 @@ export class AppComponent {
   userList : User[];
   genderList : Gender[] = [];
   academyList : Academy[] = [];
-  //country : Country;
   countryList : Country[] = [];
-  //state : State;
   stateList : State[] = [];
-  //city : City;
   cityList : City[] = [];
 
   constructor(){
@@ -70,9 +68,9 @@ export class AppComponent {
         gender : '1',
         email : 'deepesh@gmail.com',
         password : 'abcd',
-        countryList : ["INDIA"],
-        stateList : ['PUNE'],
-        cityList : ['VADGAON'],
+        country : '1',
+        state : '2',
+        city : '2',
         dateOfBirth : new Date('14/3/1991') ,
         timeOfBirth : '2 PM',
         academyList : ['1','3']
@@ -89,6 +87,50 @@ export class AppComponent {
           id : '2',
         }
       );  
+
+      this.countryList.push(
+        {
+          name : 'INDIA',
+          id : '1',
+          selected : true,          
+        },
+        {
+          name : 'USA',
+          id : '2',
+          selected : false,
+        }        
+      );
+
+      this.stateList.push(
+        {
+          name : 'Maharastra',
+          id : '1',   
+          selected : false,       
+        },
+        {
+          name : 'Chattisgarh',
+          id : '2',    
+          selected : false,  
+        }        
+      );
+
+      this.cityList.push(
+        {
+          name : 'Bhilai',
+          id : '1',   
+          selected : false,       
+        },
+        {
+          name : 'Pune',
+          id : '2',    
+          selected : false,  
+        },
+        {
+          name : 'Nagpur',
+          id : '3',   
+          selected : false,       
+        }               
+      );
 
       this.academyList.push(
         {       
@@ -113,59 +155,7 @@ export class AppComponent {
         }
       );  
     
-      // this.countryList.push(
-      //   {       
-      //     name : "India",
-      //     id : '1',
-      //     selected : false,
-      //   },
-      //   {
-      //     name : "USA",
-      //     id : '2',
-      //     selected : false,
-      //   },
-      //   { 
-      //     name : "CANADA",
-      //     id : '3',
-      //     selected : false,
-      //   }
-      // )  
       
-      // this.stateList.push(
-      //   {       
-      //     name : "Pune",
-      //     id : '1',
-      //     selected : false,
-      //   },
-      //   {
-      //     name : "New Jerssy",
-      //     id : '2',
-      //     selected : false,
-      //   },
-      //   { 
-      //     name : "Torronto",
-      //     id : '3',
-      //     selected : false,
-      //   }
-      // )  
-
-      // this.cityList.push(
-      //   {       
-      //     name : "VADGAON",
-      //     id : '1',
-      //     selected : false,
-      //   },
-      //   {
-      //     name : "Cantaky",
-      //     id : '2',
-      //     selected : false,
-      //   },
-      //   { 
-      //     name : "Kala Handi",
-      //     id : '3',
-      //     selected : false,
-      //   }
-      // ) 
                     
   } 
     isGenderSelected(genderId: string) {
@@ -178,24 +168,25 @@ export class AppComponent {
     isSelected(academyId: string) {
       return this.user.academyList.indexOf(academyId) > -1;
     }
+    
+    isCountrySelected(countryId : string){
+      if(this.user.country === countryId){
+        return true
+      }      
+    }
 
-    // deleteItem(itemToDelete){
-    //   const newtodoList = this.todoList.filter((existingItem) =>
-    //    existingItem !== itemToDelete);
-    //    this.todoList = newtodoList;
+    isStateSelected(stateId : string){
+      if(this.user.state === stateId){
+        return true
+      }      
+    }
 
-    // isCountrySelect(countryId : string){
-    //   return this.user.countryList.indexOf(countryId) > -1;
-    // }
-
-    // isStateSelect(stateId : string){
-    //   return this.user.stateList.indexOf(stateId) > -1;
-    // }
-  
-    // isCitySelect(cityId : string){
-    //   return this.user.cityList.indexOf(cityId) > -1;
-    // }
-  
+    isCitySelected(cityId : string){
+      if(this.user.city === cityId){
+        return true
+      }      
+    }
+        
 } 
 
   
