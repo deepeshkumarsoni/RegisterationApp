@@ -1,72 +1,76 @@
 <h1> REGISTERATION APP </h1>
 
-  <div class="form-group">
-    <label> First Name : </label>
-    <input type="text" placeholder="Enter here" [(ngModel)] = "user.firstName"/>
-    <label> Last Name : </label>
-    <input type="text" placeholder="Enter here" [(ngModel)] = "user.lastName"/>
-  </div> <br>
-  
-  <div class="form-group">
-    <label > Age :</label>
-    <input type="number" placeholder="Enter here" [(ngModel)] = "user.age"/>
-  </div> <br>
+<div class="form-group">
+  <label> First Name : </label>
+  <input type="text" placeholder="Enter here" [(ngModel)]="user.firstName" />
+  <label> Last Name : </label>
+  <input type="text" placeholder="Enter here" [(ngModel)]="user.lastName" />
+</div> <br>
 
-  <div class="form-group">
-    <label> Gender :</label>
-    <span *ngFor = "let gender of genderList">
-      <input type ="radio" [checked] = "isGenderSelected(gender.id)"/>{{gender.name}}    
-    </span>
-  </div> <br>
+<div class="form-group">
+  <label> Age :</label>
+  <input type="number" placeholder="Enter here" [(ngModel)]="user.age" />
+</div> <br>
 
-  <div class="form-group">
-    <label> Email-ID :</label>
-    <input type="email" placeholder="Enter here" [(ngModel)] = "user.email"/>
-  </div> <br>
+<div class="form-group">
+  <label> Gender :</label>
+  <span *ngFor="let gender of genderList">
+    <input type="radio" [checked]="isGenderSelected(gender.id)" />{{gender.name}}
+  </span>
+</div> <br>
 
-  <div class="form-group">
-    <label > Password :</label>
-    <input type="password" placeholder="Enter here" [(ngModel)] = "user.password"/>
-  </div> <br>
+<div class="form-group">
+  <label> Email-ID :</label>
+  <input type="email" placeholder="Enter here" [(ngModel)]="user.email" />
+</div> <br>
 
-  <div class="form-group">
-    <label > Date Of Birth :</label>
-    <input type="date" [(ngModel)] = "user.dateOfBirth"/>
+<div class="form-group">
+  <label> Password :</label>
+  <input type="password" placeholder="Enter here" [(ngModel)]="user.password" />
+</div> <br>
 
-    <label > Time Of Birth :</label>
-    <input type="time" [(ngModel)] = "user.timeOfBirth"/>
-  </div> <br>
+<div class="form-group">
+  <label> Date Of Birth :</label>
+  <input type="datetime" [(ngModel)]="user.dateOfBirth" />
 
-  <div class="form-group">
-    <label > Academic Report :</label>
-    <span *ngFor = "let academy of academyList">
-      <input type="checkbox" [checked] = "isSelected(academy.id)" > {{academy.name}}
-    </span>
-  </div> <br>
-  
-  <div class="form-group">    
-    <label> Country : </label> 
-    <select> 
-      <option>--Select--</option> 
-      <option *ngFor = "let country of countryList" [selected]= "isCountrySelected(country.countryId)" > {{country.name}} </option>
-    </select>
-    
-    <label> State : </label>
-    <select> 
-      <option>--Select--</option> 
-      <option *ngFor = "let state of stateList" [selected]= "isStateSelected(state.stateId)" > {{state.name}} </option>
-    </select> 
+  <label> Time Of Birth :</label>
+  <input type="time" [(ngModel)]="user.timeOfBirth" />
+</div> <br>
 
-    <label> City : </label> 
-    <select> 
-      <option>--Select--</option> 
-      <option *ngFor = "let city of cityList" [selected]= "isCitySelected(city.cityId)" > {{city.name}} </option>
-    </select>
-    
-  </div>
-    
-  <button> Register </button>
+<div class="form-group">
+  <label> Academic Report :</label>
+  <span *ngFor="let academy of academyList">
+    <input type="checkbox" [checked]="isSelected(academy.id)"> {{academy.name}}
+  </span>
+</div> <br>
 
+<div class="form-group">
+  <label> Country : </label>
+  <select [(ngModel)]="country" (change)="getFilterState($event.target.value)">
+    <option>--Select--</option>
+    <option *ngFor="let country of countryList" value={{country.countryId}}> {{country.name}} </option>
+  </select>
+
+  <label> State : </label>
+  <select [(ngModel)]="state" (change)="getFilterCity($event.target.value)">
+    <option>--Select--</option>
+    <option *ngFor="let state of stateList" value={{state.stateId}}> {{state.name}} </option>
+  </select>
+
+  <!-- <label> City : </label>
+  <select>
+    <option>--Select--</option>
+    <option *ngFor="let city of cityList" (selected)="isCitySelected(city.cityId)"> {{city.name}} </option>
+  </select> -->
+
+</div><br><br>
+
+<button id="btn" onclick="onSubmit()"> Register </button><br>
+
+<!-- 
+<ul *ngFor="let items of userList">
+  <li> {{items}} </li>
+</ul> -->
 
 <!-- <table border="2px" style="border-collapse: collapse;">
   <thead>
@@ -88,5 +92,3 @@
 <pre>
   {{user|json}}
 </pre>
-
-
