@@ -1,7 +1,4 @@
-import { Component } from '@angular/core';
-import { Time } from '@angular/common';
-import { getLocaleDateTimeFormat } from '@angular/common';
-import { element } from 'protractor';
+import { Component, OnInit } from '@angular/core';
 
 export interface User {
   firstName: string;
@@ -16,15 +13,13 @@ export interface User {
   dateOfBirth: Date;
   timeOfBirth: string;
   academyList: string[];
+  userId: string;
 };
 
-export interface Gender {
-  name: string;
-  id: string;
-}
 export interface Academy {
   name: string;
   id: string;
+  selected: boolean;
 }
 export interface Country {
   name: string;
@@ -52,178 +47,200 @@ export interface City {
 export class AppComponent {
   title = 'RegisterationApp';
   user: User;
-  userList: User[];
-  genderList: Gender[] = [];
-  academyList: Academy[] = [];
-  countryList: Country[] = [];
+  userList: User[] = [];
+  academyList: Academy[] = []; // define as array of academy and initialize with empty array.
+  countryListFromServer: Country[] = [];
   stateList: State[] = [];
   cityList: City[] = [];
+  stateListFromServer: State[];
+  cityListFromServer: City[];
 
   constructor() {
-    this.user = {
-      firstName: 'Deepesh',
-      lastName: 'Soni',
-      age: 28,
-      gender: '1',
-      email: 'deepesh@gmail.com',
-      password: 'abcd',
-      country: '1',
-      state: '3',
-      city: '6',
-      dateOfBirth: new Date('14/3/1991'),
-      timeOfBirth: '2 PM',
-      academyList: ['1', '3']
-    };
-    this.userList = [];
+    // the selected user data
+    this.user = this.emptyUser();
 
-    this.genderList.push(
-      {
-        name: 'Male',
-        id: '1',
-      },
-      {
-        name: 'Female',
-        id: '2',
-      }
-    );
-
-    this.countryList.push(
+    this.countryListFromServer =[
       {
         name: 'INDIA',
-        countryId: '1',
+        countryId: 'IN',
       },
       {
         name: 'USA',
-        countryId: '2',
+        countryId: 'USA',
       }
-    );
+    ];
 
-    this.stateList.push(
+    this.stateListFromServer = [
       {
         name: 'Maharastra',
-        stateId: '1',
-        countryId: '1',
+        stateId: 'MAH',
+        countryId: 'IN',
       },
       {
         name: 'Chattisgarh',
-        stateId: '2',
-        countryId: '1',
+        stateId: 'CG',
+        countryId: 'IN',
       },
       {
         name: 'New York',
-        stateId: '3',
-        countryId: '2',
+        stateId: 'NY',
+        countryId: 'USA',
       },
       {
         name: 'Manhatten',
-        stateId: '4',
-        countryId: '2',
+        stateId: 'MH',
+        countryId: 'USA',
       }
-    );
+    ];
 
-    this.cityList.push(
+    this.cityListFromServer = [
       {
         name: 'Nagpur',
-        cityId: '1',
-        stateId: '1'
+        cityId: 'NGP',
+        stateId: 'MAH'
       },
       {
         name: 'Pune',
-        cityId: '2',
-        stateId: '1'
+        cityId: 'PUNE',
+        stateId: 'MAH'
       },
       {
         name: 'Bhilai',
-        cityId: '3',
-        stateId: '2',
+        cityId: 'BH',
+        stateId: 'CG',
       },
       {
         name: 'Durg',
-        cityId: '4',
-        stateId: '2',
+        cityId: 'DG',
+        stateId: 'CG',
       },
       {
         name: 'Kalahandi',
-        cityId: '5',
-        stateId: '3'
+        cityId: 'KHD',
+        stateId: 'NY'
       },
       {
         name: 'Shaitaan Galli',
-        cityId: '6',
-        stateId: '3'
+        cityId: 'SG',
+        stateId: 'NY'
       },
       {
         name: 'Ram Nagar',
-        cityId: '7',
-        stateId: '4',
+        cityId: 'RN',
+        stateId: 'MH',
       },
       {
         name: 'Khursipar',
-        cityId: '8',
-        stateId: '4',
+        cityId: 'KHG',
+        stateId: 'MH',
       }
-    );
-
+    ];
+    
     this.academyList.push(
       {
         name: "10th",
         id: '1',
+        selected: false,
       },
       {
         name: "12th",
         id: '2',
+        selected: false,
       },
       {
         name: "Graduate",
         id: '3',
+        selected: false,
       },
       {
         name: "Post-Graduate",
         id: '4',
+        selected: false,
       }
     );
-
-
-
-  }
-  isGenderSelected(genderId: string) {
-    if (this.user.gender === genderId) {
-      return true;
-    }
-
   }
 
+  // ngOnInit(): void {
+  //    this.stateList = this.filterStateByCountryId(null);
+  //    this.cityList = this.filterCityByStateId(null);
+  // }
+
+  /**
+   * While rendering each checkbox we will call this function
+   * and this function will check if the academy id belongs to user or not.
+   * @param academyId academy of raw data.
+   */
   isSelected(academyId: string) {
     return this.user.academyList.indexOf(academyId) > -1;
   }
 
-  getFilterState(countryId: string) {
-    const filterStateList = this.stateList.filter((state) =>{
-      return state.countryId === countryId;
-    });
+  onAcademySelection(academyId: string) {
+    this.user.academyList.push(academyId);
   }
 
-  getFilterCity(stateId : string){
-    const filterCityList = this.cityList.filter((city) =>{
-      return city.stateId === stateId;
-    });
+  onCountrySelection(countryId: string) {
+    this.user.country = countryId;
+   this.stateList = this.filterStateByCountryId(countryId);
+  } 
+
+  onStateSelection(stateId: string) {
+    this.user.state = stateId;
+    this.cityList = this.filterCityByStateId(stateId);
   }
 
-  // isStateSelected(stateId: string) {
-  //   if (this.user.state === stateId) {
-  //     return true
-  //   }
-  // }
+  onCitySelection(cityId: string) {
+    this.user.city = cityId;
+  }
 
-  // isCitySelected(cityId: string) {
-  //   if (this.user.city === cityId) {
-  //     return true;
-  //   }
-  // }
-
-  onSubmit() {
+  onRegister(){
+    //this.user.userId = Date.now().toPrecision();
+    debugger;
     this.userList.push(this.user);
+    //this.user = this.emptyUser();
   }
+
+  private filterStateByCountryId(countryId: string) {
+    /**
+     * Get all of the states belongs to countryId
+     */
+    if (countryId) {
+      return this.stateListFromServer.filter(
+        (state) => state.countryId === countryId
+      );
+    } else {
+      return [...this.stateListFromServer];
+    }
+  }
+
+  private filterCityByStateId(stateId: string) {
+    /**
+     * get all of the city belongs to stateId
+     */
+    if (stateId) {
+      return this.cityListFromServer.filter((city) => city.stateId === stateId);
+    } else {
+      return [...this.cityListFromServer];
+    }
+  }
+
+  private emptyUser() {
+    return {
+      userId: null,
+      firstName: '',
+      lastName: '',
+      age: 0,
+      gender: '',
+      email: '',
+      password: '',
+      country: '',
+      state: '',
+      city: '',
+      dateOfBirth: null,
+      academyList: [],
+      timeOfBirth: null,
+    };
+  }
+
 }
 
 

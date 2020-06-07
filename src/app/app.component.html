@@ -14,9 +14,8 @@
 
 <div class="form-group">
   <label> Gender :</label>
-  <span *ngFor="let gender of genderList">
-    <input type="radio" [checked]="isGenderSelected(gender.id)" />{{gender.name}}
-  </span>
+  <input type="radio" value="male" [(ngModel)]="user.gender" />Male
+  <input type="radio" value="female" [(ngModel)]="user.gender" />Female
 </div> <br>
 
 <div class="form-group">
@@ -31,7 +30,7 @@
 
 <div class="form-group">
   <label> Date Of Birth :</label>
-  <input type="datetime" [(ngModel)]="user.dateOfBirth" />
+  <input type="date" [(ngModel)]="user.dateOfBirth" />
 
   <label> Time Of Birth :</label>
   <input type="time" [(ngModel)]="user.timeOfBirth" />
@@ -40,54 +39,72 @@
 <div class="form-group">
   <label> Academic Report :</label>
   <span *ngFor="let academy of academyList">
-    <input type="checkbox" [checked]="isSelected(academy.id)"> {{academy.name}}
+    <input type="checkbox" [checked]="isSelected(academy.id)" [value]="academy.id"
+      (change)="onAcademySelection($event.target.value)"> {{academy.name}}
+    <!-- ngFor loop is used to print all academyList value.
+            isSelected() is used to check whether selected item is present on the list or not.
+            onAcademySelection() is used for storing the selected academy in userList.  -->
   </span>
-</div> <br>
+</div> <br><br>
 
 <div class="form-group">
-  <label> Country : </label>
-  <select [(ngModel)]="country" (change)="getFilterState($event.target.value)">
-    <option>--Select--</option>
-    <option *ngFor="let country of countryList" value={{country.countryId}}> {{country.name}} </option>
+  <label> COUNTRY : </label>
+  <select id="country" (change)="onCountrySelection($event.target.value)">
+    <option value="">--Select Country--</option>
+    <option *ngFor="let country of countryListFromServer" [value]="country.countryId"> {{country.name}} </option>
   </select>
 
-  <label> State : </label>
-  <select [(ngModel)]="state" (change)="getFilterCity($event.target.value)">
-    <option>--Select--</option>
-    <option *ngFor="let state of stateList" value={{state.stateId}}> {{state.name}} </option>
+  <label> STATE : </label>
+  <select id="state" (change)="onStateSelection($event.target.value)">
+    <option value="">--Select State--</option>
+    <option *ngFor="let state of stateList" [value]="state.stateId"> {{state.name}} </option>
   </select>
 
-  <!-- <label> City : </label>
-  <select>
-    <option>--Select--</option>
-    <option *ngFor="let city of cityList" (selected)="isCitySelected(city.cityId)"> {{city.name}} </option>
-  </select> -->
+  <label> CITY : </label>
+  <select id="city" (change)="onCitySelection($event.target.value)">
+    <option value="">--Select City--</option>
+    <option *ngFor="let city of cityList" [value]="city.cityId"> {{city.name}} </option>
+
+</select>
 
 </div><br><br>
 
-<button id="btn" onclick="onSubmit()"> Register </button><br>
+<button id="btn" (onclick)="onRegister()"> Register </button><br><br>
 
-<!-- 
-<ul *ngFor="let items of userList">
-  <li> {{items}} </li>
-</ul> -->
-
-<!-- <table border="2px" style="border-collapse: collapse;">
+<table>
   <thead>
     <tr>
-      <th> First Name </th>  
-      <th> Last Name </th>    
-      <th> Age </th>  
+      <td> First Name </td>
+      <td> Last Name </td>
+      <td> Age </td>
+      <td> Gender </td>
+      <td> Email </td>
+      <td> Password </td>
+      <td> DOB </td>
+      <td> TOB </td>
+      <td> Academic Report </td>
+      <td> Country </td>
+      <td> State </td>
+      <td> City </td>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>  </td>
-      <td>  </td>
-      <td>  </td>
+    <tr *ngFor="let user of userList">
+      <td> {{user.firstName}} </td>
+      <td> {{user.lastName}} </td>
+      <td> {{user.age}} </td>
+      <td> {{user.gender}} </td>
+      <td> {{user.email}} </td>
+      <td> {{user.password}} </td>
+      <td> {{user.dateOfBirth}} </td>
+      <td> {{user.timeOfBirth}} </td>
+      <td> {{user.academyList}} </td>
+      <td> {{user.country}} </td>
+      <td> {{user.state}} </td>
+      <td> {{user.city}} </td>
     </tr>
   </tbody>
-</table> -->
+</table>
 
 <pre>
   {{user|json}}
