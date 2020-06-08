@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserRegisterationComponent } from './user-registeration/user-registeration.component';
 import { UserListPageComponent } from './user-list-page/user-list-page.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [

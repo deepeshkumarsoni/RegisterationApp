@@ -44,7 +44,7 @@ export interface City {
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'RegisterationApp';
   user: User;
   userList: User[] = [];
@@ -58,7 +58,7 @@ export class AppComponent {
   constructor() {
     // the selected user data
     this.user = this.emptyUser();
-
+    debugger;
     this.countryListFromServer =[
       {
         name: 'INDIA',
@@ -159,11 +159,11 @@ export class AppComponent {
       }
     );
   }
-
-  // ngOnInit(): void {
-  //    this.stateList = this.filterStateByCountryId(null);
-  //    this.cityList = this.filterCityByStateId(null);
-  // }
+  
+  ngOnInit(): void {
+    this.stateList = this.filterStateByCountryId(null);
+    this.cityList = this.filterCityByStateId(null);
+  }
 
   /**
    * While rendering each checkbox we will call this function
@@ -194,7 +194,7 @@ export class AppComponent {
 
   onRegister(){
     //this.user.userId = Date.now().toPrecision();
-    debugger;
+    
     this.userList.push(this.user);
     //this.user = this.emptyUser();
   }
