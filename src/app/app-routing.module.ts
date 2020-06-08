@@ -4,14 +4,11 @@ import { UserRegisterationComponent } from './user-registeration/user-registerat
 import { UserListPageComponent } from './user-list-page/user-list-page.component';
 
 const routes: Routes = [
-  {
-    path : "registeration",
-    Component : UserRegisterationComponent
-  },
-  {
-    path : "users",
-    Component : UserListPageComponent
-  },
+
+  { path : "registeration", component : UserRegisterationComponent },
+  
+  { path : "users", component : UserListPageComponent }
+
 ];
 
 @NgModule({

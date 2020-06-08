@@ -44,7 +44,7 @@ export interface City {
   styleUrls: ['./user-registeration.component.scss']
 })
 
-export class AppComponent implements OnInit{
+export class UserRegisterationComponent implements OnInit{
   title = 'RegisterationApp';
   user: User;
   userList: User[] = [];
