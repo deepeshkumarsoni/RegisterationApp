@@ -194,7 +194,7 @@ export class AppComponent implements OnInit{
   onRegister(){
     this.user.userId = Date.now().toPrecision();
     this.userList.push({...this.user});
-    //this.user = this.emptyUser();
+    this.user = this.emptyUser();
   }
 
   private filterStateByCountryId(countryId: string) {
