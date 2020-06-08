@@ -159,7 +159,6 @@ export class AppComponent implements OnInit{
       }
     );
   }
-  
   ngOnInit(): void {
     this.stateList = this.filterStateByCountryId(null);
     this.cityList = this.filterCityByStateId(null);
@@ -193,9 +192,8 @@ export class AppComponent implements OnInit{
   }
 
   onRegister(){
-    //this.user.userId = Date.now().toPrecision();
-    
-    this.userList.push(this.user);
+    this.user.userId = Date.now().toPrecision();
+    this.userList.push({...this.user});
     //this.user = this.emptyUser();
   }
 
@@ -240,7 +238,6 @@ export class AppComponent implements OnInit{
       timeOfBirth: null,
     };
   }
-
 }
 
 
