@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { UserService } from '../user.service';
+import { User } from '../user-registeration/user-registeration.component';
 
 @Component({
   selector: 'app-user-list-page',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) {
 
-  ngOnInit(): void {
   }
-
+  userList = [];
+  ngOnInit() {
+    this.userList = this.userService.getUser();
+    console.log('User List: ', this.userList)
+  }
+  //listUser :  userList[],
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 export interface User {
   firstName: string;
@@ -44,7 +45,7 @@ export interface City {
   styleUrls: ['./user-registeration.component.scss']
 })
 
-export class UserRegisterationComponent implements OnInit{
+export class UserRegisterationComponent implements OnInit {
   title = 'RegisterationApp';
   user: User;
   userList: User[] = [];
@@ -55,11 +56,11 @@ export class UserRegisterationComponent implements OnInit{
   stateListFromServer: State[];
   cityListFromServer: City[];
 
-  constructor() {
+  constructor(private userService: UserService) {   // Dependency Injection is done here.
     // the selected user data
     this.user = this.emptyUser();
     debugger;
-    this.countryListFromServer =[
+    this.countryListFromServer = [
       {
         name: 'INDIA',
         countryId: 'IN',
@@ -135,7 +136,7 @@ export class UserRegisterationComponent implements OnInit{
         stateId: 'MH',
       }
     ];
-    
+
     this.academyList.push(
       {
         name: "10th",
@@ -173,27 +174,43 @@ export class UserRegisterationComponent implements OnInit{
     return this.user.academyList.indexOf(academyId) > -1;
   }
 
-  onAcademySelection(academyId: string) {
+  onAcademySelection(academyId: string) {    
     this.user.academyList.push(academyId);
   }
 
   onCountrySelection(countryId: string) {
-    this.user.country = countryId;
-   this.stateList = this.filterStateByCountryId(countryId);
-  } 
+    if (countryId) {
+      let filteredCountry =
+       this.countryListFromServer.filter(item => item.countryId === countryId);
+      this.user.country = filteredCountry[0].name;
+
+    }
+    this.stateList = this.filterStateByCountryId(countryId);
+  }
 
   onStateSelection(stateId: string) {
-    this.user.state = stateId;
+    if (stateId) {
+      let filteredState =
+       this.stateListFromServer.find(item => item.stateId === stateId);
+      this.user.state = filteredState.name;
+    }
+    //this.user.state = stateId;
     this.cityList = this.filterCityByStateId(stateId);
   }
 
   onCitySelection(cityId: string) {
-    this.user.city = cityId;
+    //this.user.city = cityId;
+    if (cityId) {
+      let filteredcity =
+       this.cityListFromServer.find(item => item.cityId === cityId);
+      this.user.city = filteredcity.name;
+    }
   }
 
-  onRegister(){
+  onRegister() {
     this.user.userId = Date.now().toPrecision();
     this.userList.push(this.user);
+    this.userService.setUser(this.user);
     this.user = this.emptyUser();
   }
 
